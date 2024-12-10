@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: "Assets/Samples/Meta XR Interaction \u200BSDK/71.0.0/Feature Scenes/DebugBodyJoints.unity"
+    guid: abd747a5d8c82d5439ad2453550edbaf
+  - enabled: 0
+    path: "Assets/Samples/Meta XR Interaction \u200BSDK/71.0.0/Feature Scenes/DebugGesture.unity"
+    guid: 577706ac129bf594196dbdc4d948c6e6
+  - enabled: 0
+    path: "Assets/Samples/Meta XR Interaction \u200BSDK/71.0.0/Example Scenes/GestureExamples.unity"
+    guid: 4ee2a082a0e621b49ab01667c66f1599
+  - enabled: 0
+    path: "Assets/Samples/Meta XR Interaction \u200BSDK/71.0.0/Example Scenes/PoseExamples.unity"
+    guid: 4fe358b21fe17764db89a9ab9f202327
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a634b794bfd944afd904c3d3fc46def3,
       type: 2}
