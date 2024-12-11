@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public void IndexFingerStart()
     {
         _isWriting = true;
-        _debugText.text = "writing";
+        _debugText.text = "you are writing";
     }
     
     public void IndexFingerEnd()
@@ -28,7 +28,12 @@ public class GameManager : MonoBehaviour
         _lineRenderer.positionCount = 0;
         _writingPointsLogged.Clear();
         _writingVisualFeedback.Clear();
-        _debugText.text = "";
+        _debugText.text = "do a thumb-up to finish writing";
+    }
+
+    public void FinishWriting()
+    {
+        _debugText.text = "finish writing";
     }
 
     private void Start()
