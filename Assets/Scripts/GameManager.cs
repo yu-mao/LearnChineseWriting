@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         {
             _countWritingVisualFeedbackDisplayed += 1;
         }
+        _writingPointsLogged.Clear();
         _isWriting = false;
         _debugText.text = "";
     }
