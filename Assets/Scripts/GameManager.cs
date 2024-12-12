@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,17 +11,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private OVRSkeleton _skeleton;
     [SerializeField] private List<LineRenderer> _writingVisualFeedbackGroup;
     [SerializeField] private int _segmentsPerCurve = 2; // interpolation factor, the bigger, the smoother & the slower
-    [SerializeField] private TextMeshProUGUI _debugText;
+    [SerializeField] private TextMeshProUGUI _uiText;
+    [SerializeField] private List<GameObject> _sampleChineseCharacters;
 
     private bool _isWriting = false;
     private int _countWritingVisualFeedbackDisplayed = 0;
     private List<Vector3> _writingPointsLogged = new List<Vector3>();
     private List<Vector3> _writingVisualFeedback = new List<Vector3>();
+    private int _countCharactersWritten = 0;
 
     public void IndexFingerStart()
     {
         _isWriting = true;
-        _debugText.text = "you are writing";
+        _uiText.text = "You Are Writing";
     }
     
     public void IndexFingerEnd()
@@ -35,25 +38,34 @@ public class GameManager : MonoBehaviour
         }
         _writingPointsLogged.Clear();
         _isWriting = false;
-        _debugText.text = "";
+        _uiText.text = "";
     }
 
     public void FinishWriting()
     {
-        ClearWriting();
-        _debugText.text = "finish writing";
+        ClearUserWriting();
+        _uiText.text = "Finish the Character";
+        if (_countCharactersWritten < _sampleChineseCharacters.Count)
+        {
+            _countCharactersWritten += 1;
+            _sampleChineseCharacters[_countCharactersWritten].SetActive(true);
+        }
     }
-
-
+    
     public void RedoWriting()
     {
-        ClearWriting();
-        _debugText.text = "redo writing";
+        ClearUserWriting();
+        _uiText.text = "Redo Writing";
     }
 
     private void Start()
     {
-        ClearWriting();
+        ClearUserWriting();
+        foreach (var sample in _sampleChineseCharacters)
+        {
+            sample.SetActive(false);
+        }
+        _sampleChineseCharacters[_countCharactersWritten].SetActive(true);
     }
 
     private void Update()
@@ -69,7 +81,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    private void ClearWriting()
+    private void ClearUserWriting()
     {
         _writingPointsLogged.Clear();
         foreach (var lineRenderer in _writingVisualFeedbackGroup)
