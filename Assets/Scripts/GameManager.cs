@@ -82,9 +82,9 @@ public class GameManager : MonoBehaviour
     
     private Vector3 GetIndexFingerTipPosition()
     {
-        // TODO: improve finger tip position tracking accuracy
-        var indexFingerTip = _skeleton.Bones[(int)OVRSkeleton.BoneId.Hand_Index3];
-        var indexFingerTipPos = indexFingerTip.Transform.position;
+        var indexFingerMid = _skeleton.Bones[(int)OVRSkeleton.BoneId.Hand_Index3];
+        var indexFingerBottom = _skeleton.Bones[(int)OVRSkeleton.BoneId.Hand_Index2];
+        var indexFingerTipPos = indexFingerMid.Transform.position * 2 - indexFingerBottom.Transform.position;
         return indexFingerTipPos;
     }
 
